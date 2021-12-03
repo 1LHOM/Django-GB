@@ -1,0 +1,45 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block css %}
+    {{ block.super }}
+{% endblock %}
+{% block content %}
+    <div class="slider">
+        <div class="header clearfix">
+            {% include 'mainapp/includes/inc_main_menu.html' %}
+        </div>
+        <div class="text-slider">
+            <h3 class="green">тенденции</h3>
+            <h3 class="big"> удобные стулья</h3>
+            <p>Новый уровень комфорта. Отличные характеристики.</p>
+            <a href="#" class="button-order">заказать <img src="{% static '/img/arrow.png' %}" alt=""></a>
+        </div>
+        <div class="navi">
+            <a href="#"></a><a href="#"></a><a href="#"></a>
+        </div>
+    </div>
+
+
+    <div class="featured">
+        <div class="featured-menu">
+                <a class="active" href="#">Популярные</a><a href="#">Новинки</a>
+        </div>
+        <a class="explore" href="#">показать все <img src="{% static '/img/arrow.png' %}" alt=""></a>
+        <div class="clearfix">
+        </div>
+        <div class="tab-content">
+            {% for product in products %}
+            <div class="block">
+                <a href="#"><img src="{% static '/img/product-1.jpg' %}" alt="">
+                    <div class="text">
+                        <img src="{% static '/img/icon-hover.png' %}" alt="img">
+                        <h4>{{ product.name}}</h4>
+                        <p>{{ product.short_desc}}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
