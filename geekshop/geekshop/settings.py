@@ -122,7 +122,8 @@ USE_TZ = True
 
 STATIC_URL = '/assets/'
 STATICFILES_DIRS = (
-    BASE_DIR / 'static',
+    ('', BASE_DIR / 'static',),
+    ('media', BASE_DIR / 'media'),
 )
 
 # Default primary key field type

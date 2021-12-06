@@ -8,6 +8,7 @@ from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditF
 
 def login(request):
     title = 'Вход'
+    form_name = 'Вход в систему'
     login_form = ShopUserLoginForm(data=request.POST)
     if request.method == 'POST' and login_form.is_valid():
         username = request.POST.get('username')
@@ -19,6 +20,7 @@ def login(request):
             return HttpResponseRedirect(reverse('index'))
 
     context = {
+        'form_name': form_name,
         'title': title,
         'login_form': login_form
     }
@@ -32,7 +34,8 @@ def logout(request):
 
 
 def edit(request):
-    title = 'Редактирование'
+    title = 'Профиль'
+    form_name = 'Настройка профилья'
     if request.method == 'POST':
         edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)
         if edit_form.is_valid():
@@ -42,6 +45,7 @@ def edit(request):
     else:
         edit_form = ShopUserEditForm(instance=request.user)
     context = {
+        'form_name': form_name,
         'title': title,
         'edit_form': edit_form
     }
@@ -50,6 +54,7 @@ def edit(request):
 
 def register(request):
     title = 'Регистрация'
+    form_name = 'Регистрация'
     if request.method == 'POST':
         register_form = ShopUserRegisterForm(request.POST, request.FILES)
         if register_form.is_valid():
@@ -59,6 +64,7 @@ def register(request):
     else:
         register_form = ShopUserRegisterForm()
     context = {
+        'form_name': form_name,
         'title': title,
         'register_form': register_form
     }
