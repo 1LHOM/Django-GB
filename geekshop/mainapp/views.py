@@ -3,6 +3,7 @@ import json
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404
 
+from basketapp.models import Basket
 from mainapp.models import Product, ProductCategory
 
 
@@ -36,7 +37,8 @@ def products(request, pk=None):
             'title': title,
             'links_menu': links_menu,
             'products': products_list,
-            'category': category_item
+            'category': category_item,
+            'basket': sum(list(Basket.objects.filter(user=request.user).values_list('quantity', flat=True)))
         }
 
         return render(request, 'mainapp/products_list.html', context)
@@ -45,8 +47,8 @@ def products(request, pk=None):
         'links_menu': links_menu,
         'title': 'Товары | Interior - online furniture shopping',
         'hot_product': Product.objects.all().first(),
-        'same_products': Product.objects.all()[1:3]
-
+        'same_products': Product.objects.all()[1:3],
+        'basket': sum(list(Basket.objects.filter(user=request.user).values_list('quantity', flat=True)))
     }
     return render(request, 'mainapp/products.html', context)
 
