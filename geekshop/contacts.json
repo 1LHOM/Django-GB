@@ -1,0 +1,20 @@
+[
+  {
+    "city": "Москва",
+    "phone": "+79658742536",
+    "email": "moscow@gb.local",
+    "address": "Лениский п-т, 16"
+  },
+  {
+    "city": "Казань",
+    "phone": "+79854563215",
+    "email": "kazan@gb.local",
+    "address": "Лениский п-т, 15"
+  },
+  {
+    "city": "Йошкар-Ола",
+    "phone": "+75689654586",
+    "email": "yola@gb.local",
+    "address": "Лениский п-т, 14"
+  }
+]
