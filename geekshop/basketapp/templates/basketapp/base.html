@@ -21,7 +21,7 @@
 <body>
     <div class="basket_container">
             <div class="h2 text-center head">
-                Ваша корзина, {% if user.first_name %}{{ user.first_name|upper }}{% else %}Пользователь{% endif %}
+                Ваша корзина, {% if user.first_name %}{{ user.first_name }}{% else %}Пользователь{% endif %}
             </div>
 
             {% block content %}

@@ -1,0 +1,27 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+{% block content %}
+<div class="users_list">
+    <a href="{% url 'adminapp:user_create' %}" class="btn btn-primary">Cоздать нового пользователя</a>
+{% for item in object_list %}
+    <div class="user_record" {% if not item.is_active %}style="opacity: 0.5" {% endif %}>
+        <div class="user_avatar_min"><img src="{% static 'media/' %}{{ item.avatar }}" alt=""></div>
+        <div class="user_role">
+            {% if item.is_superuser %}
+                Администратор
+            {% elif item.is_active %}
+                Пользователь
+            {% endif %}
+            <a class="btn btn-warning form-control" href="{% url 'adminapp:user_update' item.pk %}">Изменить</a>
+            <a class="btn btn-danger form-control" href="{% url 'adminapp:user_delete' item.pk %}">Удалить</a>
+        </div>
+    <div class="user_name">
+        <p>{{ item.username }}</p>
+        <p>{{ item.get_full_name }}</p>
+    </div>
+    <div class="user_age">{{ item.age }}</div>
+    <div class="user_email">{{ item.email }}</div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

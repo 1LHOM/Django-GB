@@ -8,6 +8,9 @@
            class="{% if request.resolver_match.url_name == 'contacts' %}active{% endif %}">контакты</a></li>
 
     {% if user.is_authenticated %}
+        {% if user.is_superuser %}
+            <li><a href="{% url 'adminapp:users' %}" >Admin_menu</a></li>
+        {% endif %}
         <li>
             <a href="{% url 'authapp:edit' %}">
             {% if user.first_name %}

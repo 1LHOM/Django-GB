@@ -96,7 +96,7 @@ html, body {
 }
 
 .products_list {
-    margin-left: 180px;
+    margin-left: 150px;
 }
 
 .products_list .new_product {
@@ -118,8 +118,9 @@ html, body {
 }
 
 .product_record {
-    height: 125px;
-    margin: 15px auto;
+    height: 150px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     position: relative;
 }
 
@@ -139,7 +140,7 @@ html, body {
 .product_record .product_actions {
     display: block;
     float: left;
-    margin-top: 0px;
+    margin-top: 5px;
     margin-left: 25px;
     width: 135px;
 }
@@ -147,7 +148,7 @@ html, body {
 .product_record .product_desc {
     display: block;
     float: left;
-    margin-top: 15px;
+    margin-top: 5px;
     margin-left: 25px;
     width: 350px;
 }
@@ -155,7 +156,7 @@ html, body {
 .product_record .summary {
     display: block;
     float: left;
-    margin-top: 15px;
+    margin-top: 5px;
     margin-left: 25px;
     width: 100px;
 }
@@ -163,8 +164,9 @@ html, body {
 .product_record img {
     display: block;
     float: left;
-    height: 125px;
-    width: 125px;
+    margin-top: 5px;
+    height: 130px;
+    width: 130px;
     border-radius: 25px;
 }
 
@@ -292,9 +294,26 @@ html, body {
 }
 
 .user_record {
-    height: 125px;
+    height: 150px;
     margin: 15px auto;
     position: relative;
+}
+
+.users_list .btn {
+    color: #ffffff;
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+
+.categories_list .btn {
+    color: #ffffff;
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+.products_list .btn {
+    color: #ffffff;
+    margin-bottom: 3px;
+    margin-top: 3px;
 }
 
 .user_record.not_active {
@@ -304,8 +323,9 @@ html, body {
 .user_record img {
     display: block;
     float: left;
-    height: 125px;
+    height: 150px;
     border-radius: 25px;
+    margin: auto;
 }
 
 .user_record .user_name {
@@ -375,7 +395,7 @@ html, body {
     float: none;
     width: 550px;
     height: 50px;
-    margin: auto;
+    margin: 0 0 0 150px;
     color: #555;
 }
 
@@ -577,12 +597,13 @@ html, body {
     overflow: hidden;
     width: 28em;
     min-width: 500px;
-    margin: 100px auto;
+    margin: 50px auto;
     padding: 50px;
 
     position: relative;
     display: block;
 }
+
 
 .login .head {
     margin: 15px auto;
@@ -620,8 +641,57 @@ html, body {
     top: 100px;
 }
 
+/*.custom_form {*/
+/*    background: #fff;*/
+/*    border: 1px solid #eaeaea;*/
+/*    border-radius: 25px;*/
+/*    overflow: hidden;*/
+/*    width: 28em;*/
+/*    min-width: 500px;*/
+/*    margin: 50px auto;*/
+/*    padding: 50px;*/
+
+/*    position: relative;*/
+/*    display: block;*/
+/*}*/
+
+.custom_form input {
+    position:relative;
+    width:100%;
+    height: 35px;
+    margin-bottom:0;
+    border: 2px solid #dadada;
+    border-radius: 7px;
+    padding: 5px 10px 5px 10px;
+}
+.custom_form input:focus {
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+.custom_form input.blue-button {
+    margin-bottom: 5px;
+    background-color: #0063b9;
+    color: white;
+    height: 40px;
+}
+.custom_form input.blue-button:hover {
+    color: #fff;
+    background-color: #01569f;
+    border-color: #ffffff;
+}
+.login .form-horizontal p input[type=checkbox] {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 7px;
+}
+
 .user_avatar img {
     width: 200px;
+    border-radius: 25px;
+}
+.user_avatar_min img {
+    width: 150px;
     border-radius: 25px;
 }
 
