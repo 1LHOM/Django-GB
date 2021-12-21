@@ -2,11 +2,11 @@
 
 {% block content %}
     <div class="container">
-        <div class="login custom_form">
+        <div class="login">
             <form class="form-horizontal " method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input type="submit" class="blue-button" value="Сохранить">
+                <input type="submit" class="btn btn-primary form-control" value="Сохранить">
             </form>
 
             <a class="btn btn-info form-control" href="{% url 'adminapp:categories' %}">Перейти к списку категорий</a>

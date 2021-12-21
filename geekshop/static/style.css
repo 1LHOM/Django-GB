@@ -22,14 +22,16 @@ html, body {
 .product_read img {
     display: block;
     float:left;
+    height: 320px;
+    width: 320px;
     margin-top: 25px;
     border-radius: 25px;
 }
 
 .product_read .product_name {
     display: block;
-    margin: 0 auto;
-    width: 350px;
+    margin-left: 350px;
+    width: 450px;
 }
 
 .product_read .summary {
@@ -168,6 +170,7 @@ html, body {
     height: 130px;
     width: 130px;
     border-radius: 25px;
+    border: 1px solid #cccccc;
 }
 
 
@@ -326,6 +329,7 @@ html, body {
     height: 150px;
     border-radius: 25px;
     margin: auto;
+    border: 1px solid #cccccc;
 }
 
 .user_record .user_name {
@@ -393,7 +397,7 @@ html, body {
 .admin_menu ul.menu{
     display: block;
     float: none;
-    width: 550px;
+    width: 750px;
     height: 50px;
     margin: 0 0 0 150px;
     color: #555;

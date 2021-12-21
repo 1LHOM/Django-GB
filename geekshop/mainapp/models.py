@@ -9,6 +9,13 @@ class ProductCategory(models.Model):
     def __str__(self):
         return self.name
 
+    # Мы можем определить свой метод удаления категорий
+    # мы этот метод переодределили и в views поэтому закомментируем
+    # один из этих методов что бы не было конфлик между этими функчиями
+    # def delete(self, *args, **kwargs):
+    #     self.is_active = False
+    #     self.save()
+
 
 class Product(models.Model):
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
@@ -22,3 +29,10 @@ class Product(models.Model):
 
     def __str__(self):
         return f'{self.name} ({self.category})'
+
+    # Мы можем определить свой метод удаления продуктов
+    # мы этот метод переодределили и в views поэтому закомментируем
+    # один из этих методов что бы не было конфлик между этими функчиями
+    # def delete(self, *args, **kwargs):
+    #     self.is_active = False
+    #     self.save()

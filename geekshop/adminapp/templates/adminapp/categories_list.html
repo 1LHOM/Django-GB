@@ -3,16 +3,17 @@
 {% block content %}
     <div class="categories_list">
         <a href="{% url 'adminapp:category_create' %}" class="btn btn-primary">Создать новую категорию</a>
-    {% for item in object_list %}
-        <div class="category_record" {% if not item.is_active %}style="opacity: 0.5" {% endif %}>
-        <div class="category_name">{{ item.name|title }}</div>
-        <div class="category_actions">
-            <a href="{% url 'adminapp:category_update' item.pk %}" class="btn btn-warning form-control">Изменить</a>
-            <a href="{% url 'adminapp:category_delete' item.pk %}" class="btn btn-danger form-control">Удалить</a>
-            <a href="{% url 'adminapp:products' item.pk %}" class="btn btn-primary form-control">Продукты</a>
-        </div>
-        <div class="category_desc">{{ item.description }}</div>
-        </div>
+        {% for item in object_list %}
+            <hr>
+            <div class="category_record" {% if not item.is_active %}style="opacity: 0.5" {% endif %}>
+            <div class="category_name">{{ item.name|title }}</div>
+            <div class="category_actions">
+                <a href="{% url 'adminapp:category_update' item.pk %}" class="btn btn-warning form-control">Изменить</a>
+                <a href="{% url 'adminapp:category_delete' item.pk %}" class="btn btn-danger form-control">Удалить</a>
+                <a href="{% url 'adminapp:products' item.pk %}" class="btn btn-primary form-control">Продукты</a>
+            </div>
+            <div class="category_desc">{{ item.description }}</div>
+            </div>
 
     {% endfor %}
     </div>

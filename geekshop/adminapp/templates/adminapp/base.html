@@ -5,6 +5,7 @@
 
         <meta charset="utf-8">
         <title>{% block title %} {{ title|title }} {% endblock %} </title>
+        <link rel="icon" href="https://img.icons8.com/ios-glyphs/120/000000/mac-os.png">
 
         {% block css %}
             <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.min.css' %}">
@@ -35,7 +36,16 @@
                     <a href="{% url 'adminapp:categories' %}"
                        class="{% if request.resolver_match.url_name == 'categories' %}active{% endif %}">Категории</a>
                 </li>
+                <li>
+                    <a href="{% url 'adminapp:categories' %}"
+                       class="{% if request.resolver_match.url_name == 'products' %}active{% endif %}">
+                        {% if not object.category and object.name %} > {{ object.name }}
+                        {% elif object.category %} > {{ object.category.name }}
+                        {% endif %}
+                    </a>
+                </li>
             </ul>
+
         </div>
     {% block content %}
     {% endblock %}
