@@ -9,7 +9,12 @@
                 <input type="submit" class="btn btn-primary form-control" value="Сохранить">
             </form>
 
-            <a class="btn btn-info form-control" href="{% url 'adminapp:products' object.pk %}">Вернутся к списку товаров</a>
+            {% if 'create' in request.path %}
+                <a class="btn btn-info form-control" href="{% url 'adminapp:products' category.pk %}">Вернутся к списку товаров</a>
+            {% elif 'update' in request.path %}
+                <a class="btn btn-info form-control" href="{% url 'adminapp:products' object.category.pk %}">Вернутся к списку товаров</a>
+            {% endif %}
+
         </div>
     </div>
 {% endblock %}

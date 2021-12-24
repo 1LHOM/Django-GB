@@ -125,6 +125,7 @@ def products(request, pk):
 
     return render(request, 'adminapp/products_list.html', context)
 
+
 # class ProductListView(ListView):
 #     model = Product
 #     template_name = 'adminapp/products_list.html'
@@ -138,24 +139,22 @@ def products(request, pk):
 #     def dispatch(self, request, *args, **kwargs):
 #         return super().dispatch(request, *args, **kwargs)
 
-
 class ProductCreateView(CreateView):
     model = Product
     template_name = 'adminapp/product_form.html'
     form_class = ProductForm
 
-    def _get_category(self):
-        category_id = self.kwargs.get('pk')
-        category_item = get_object_or_404(ProductCategory, pk=category_id)
-        return category_item
-
     def get_success_url(self):
-        return reverse('adminapp:products', args=[self._get_category().pk])
+        product_pk = self.kwargs.get('pk')
+        product = get_object_or_404(Product, pk=product_pk)
+        return reverse_lazy('adminapp:products', args=[product.category.pk])
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
         if self.request.method == 'GET':
-            context_data['category'] = self._get_category()
+            pk = self.kwargs.get('pk')
+            category_item = get_object_or_404(ProductCategory, pk=pk)
+            context_data['category'] = category_item
         return context_data
 
     @method_decorator(user_passes_test(lambda u: u.is_superuser))
@@ -170,8 +169,8 @@ class ProductUpdateView(UpdateView):
     form_class = ProductForm
 
     def get_success_url(self):
-        product_id = self.kwargs.get('pk')
-        product = get_object_or_404(Product, pk=product_id)
+        product_pk = self.kwargs.get('pk')
+        product = get_object_or_404(Product, pk=product_pk)
         return reverse_lazy('adminapp:products', args=[product.category.pk])
 
     @method_decorator(user_passes_test(lambda u: u.is_superuser))
