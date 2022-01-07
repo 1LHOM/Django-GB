@@ -1,6 +1,8 @@
+from datetime import datetime
+
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from django.forms import forms, HiddenInput
-
+import random, hashlib
 from authapp.models import ShopUser
 
 
@@ -26,6 +28,22 @@ class ShopUserRegisterForm(UserCreationForm):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
+
+    def save(self, *args, **kwargs):
+        user = super().save(*args, **kwargs)
+        user.is_active = False
+        salt = hashlib.sha1(str(random.random()).encode('utf8')).hexdigest()[:6]
+        user.activation_key = hashlib.sha1((user.email + salt).encode('utf8')).hexdigest()
+        user.activation_key_expires = datetime.now()
+        user.save()
+        return user
+
+    def clean_age(self):
+        data_age = self.cleaned_data['age']
+        if data_age < 18:
+            raise forms.ValidationError('Вы слишком маленький')
+
+        return data_age
 
 
 class ShopUserEditForm(UserChangeForm):

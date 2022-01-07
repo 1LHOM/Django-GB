@@ -9,12 +9,6 @@ from basketapp.models import Basket
 from mainapp.models import Product, ProductCategory
 
 
-def get_basket(user):
-    if user.is_authenticated:
-        return Basket.objects.filter(user=user)
-    return []
-
-
 def get_hot_product():
     products_list = Product.objects.all()
 
@@ -34,8 +28,7 @@ def index(request):
 
     context = {
         'title': 'Главная | Interior - online furniture shopping',
-        'products': products_list,
-        'basket': get_basket(request.user)
+        'products': products_list
     }
     return render(request, 'mainapp/index.html', context)
 
@@ -67,8 +60,7 @@ def products(request, pk=None, page=1):
             'title': title,
             'links_menu': links_menu,
             'products': products_paginator,
-            'category': category_item,
-            'basket': get_basket(request.user)
+            'category': category_item
         }
 
         return render(request, 'mainapp/products_list.html', context)
@@ -77,8 +69,7 @@ def products(request, pk=None, page=1):
         'links_menu': links_menu,
         'title': 'Товары | Interior - online furniture shopping',
         'hot_product': hot_product,
-        'same_products': get_same_products(hot_product),
-        'basket': get_basket(request.user)
+        'same_products': get_same_products(hot_product)
     }
     return render(request, 'mainapp/products.html', context)
 
@@ -88,8 +79,7 @@ def contact(request):
     with open(f"{settings.BASE_DIR}/contacts.json", encoding='utf-8') as contacts_file:
         context = {
             'contacts': json.load(contacts_file),
-            'title': 'Контакты | Interior - online furniture shopping',
-            'basket': get_basket(request.user)
+            'title': 'Контакты | Interior - online furniture shopping'
         }
     return render(request, 'mainapp/contact.html', context)
 
@@ -98,7 +88,6 @@ def product(request, pk):
     links_menu = ProductCategory.objects.all()
     context = {
         'product': get_object_or_404(Product, pk=pk),
-        'links_menu': links_menu,
-        'basket': get_basket(request.user)
+        'links_menu': links_menu
     }
     return render(request, 'mainapp/product.html', context)
