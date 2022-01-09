@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm
+from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm, ShopUserProfileEditForm
 from authapp.models import ShopUser
 
 
@@ -45,16 +45,20 @@ def edit(request):
     form_name = 'Настройка профилья'
     if request.method == 'POST':
         edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)
-        if edit_form.is_valid():
+        edit_profile_form = ShopUserProfileEditForm(request.POST, instance=request.user.shopuserprofile)
+        if edit_form.is_valid() and edit_profile_form.is_valid():
             edit_form.save()
             return HttpResponseRedirect(reverse('authapp:edit'))
 
     else:
         edit_form = ShopUserEditForm(instance=request.user)
+        edit_profile_form = ShopUserProfileEditForm(instance=request.user.shopuserprofile)
+
     context = {
+        'edit_profile_form': edit_profile_form,
         'form_name': form_name,
         'title': title,
-        'edit_form': edit_form
+        'edit_form': edit_form,
     }
     return render(request, 'authapp/edit.html', context)
 
@@ -67,6 +71,7 @@ def register(request):
         if register_form.is_valid():
             user = register_form.save()
             send_verify_email(user)
+            print('##################### AFTER SEND VERIFY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
             return HttpResponseRedirect(reverse('authapp:login'))
 
     else:
@@ -92,6 +97,7 @@ def verify(request, email, activation_key):
 
 
 def send_verify_email(user):
+    print('SEND VERIFY EMAIL IS CALLED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     verify_link = reverse('authapp:verify', args=[user.email, user.activation_key])
     subject = 'Account verification'
 

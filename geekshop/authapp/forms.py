@@ -1,9 +1,9 @@
 from datetime import datetime
 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
-from django.forms import forms, HiddenInput
+from django.forms import forms, HiddenInput, ModelForm
 import random, hashlib
-from authapp.models import ShopUser
+from authapp.models import ShopUser, ShopUserProfile
 
 
 class ShopUserLoginForm(AuthenticationForm):
@@ -50,7 +50,7 @@ class ShopUserEditForm(UserChangeForm):
 
     class Meta:
         model = ShopUser
-        fields = ('username', 'first_name', 'last_name', 'email', 'age', 'avatar', 'password')
+        fields = ('username', 'first_name', 'last_name', 'email', 'age', 'password')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -65,3 +65,16 @@ class ShopUserEditForm(UserChangeForm):
             raise forms.ValidationError('Вы слишком маленький')
 
         return data_age
+
+
+class ShopUserProfileEditForm(ModelForm):
+    class Meta:
+        model = ShopUserProfile
+        fields = ('tagline', 'about_me', 'gender', 'avatar')
+
+    def __init__(self, *args, **kwargs):
+        super(ShopUserProfileEditForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+
+
