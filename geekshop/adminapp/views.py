@@ -53,12 +53,12 @@ class UsersDeleteView(DeleteView):
     template_name = 'adminapp/user_delete.html'
     success_url = reverse_lazy('adminapp:users')
 
-    def delete(self, *args, **kwargs):
-        self.object = self.get_object()
-        self.object.is_active = False
-        self.object.save()
-
-        return HttpResponseRedirect(self.success_url)
+    # def delete(self, *args, **kwargs):
+    #     self.object = self.get_object()
+    #     self.object.is_active = False
+    #     self.object.save()
+    #
+    #     return HttpResponseRedirect(self.success_url)
 
     @method_decorator(user_passes_test(lambda u: u.is_superuser))
     def dispatch(self, request, *args, **kwargs):

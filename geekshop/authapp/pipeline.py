@@ -13,7 +13,7 @@ def save_user_profile(backend, user, response, *args, **kwargs):
 
     base_url = 'https://api.vk.com/method/users.get/'
 
-    fields_for_requests = ['bdate', 'sex', 'about', 'photo_max_orig', 'uid']
+    fields_for_requests = ['bdate', 'sex', 'about', 'photo_max_orig']
 
     params = {
         'fields': ','.join(fields_for_requests),
@@ -50,9 +50,9 @@ def save_user_profile(backend, user, response, *args, **kwargs):
     if 'photo_max_orig' in api_data:
         avatar_url = api_data['photo_max_orig']
         new_img = requests.get(avatar_url).content
-        with open(f"{settings.BASE_DIR}/media/users/{api_data['first_name']}_avatar.jpg", 'wb') as handler:
+        with open(f"{settings.BASE_DIR}/media/users/{user.pk}_{api_data['first_name']}_avatar.jpg", 'wb') as handler:
             handler.write(new_img)
-        user.avatar = f"users/{api_data['first_name']}_avatar.jpg "
+        user.avatar = f"users/{user.pk}_{api_data['first_name']}_avatar.jpg "
 
     user.save()
 

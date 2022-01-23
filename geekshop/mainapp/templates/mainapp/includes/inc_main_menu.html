@@ -19,6 +19,7 @@
                 Пользователь
             {% endif %}</a>
         </li>
+        <li><a href="{% url 'ordersapp:list' %}" >Заказы</a></li>
         <li><a href="{% url 'authapp:logout' %}" >Выйти</a></li>
     {% else %}
         <li><a href="{% url 'authapp:register' %}" >Регистрация</a></li>
