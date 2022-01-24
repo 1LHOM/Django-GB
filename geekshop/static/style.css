@@ -12,6 +12,26 @@ html, body {
 	height: 100%;
 }
 
+.btn {
+    margin-bottom: 5px;
+}
+
+.order_container {
+    margin: 25px auto;
+    width: 900px;
+}
+
+.order_container button a {
+    text-decoration: none;
+    color: #555;
+}
+
+.order_container img {
+    display: block;
+    float: left;
+    width: 150px;
+    border-radius: 25px;
+}
 
 .product_read {
     margin: 0 auto;

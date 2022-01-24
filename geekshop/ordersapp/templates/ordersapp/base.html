@@ -15,17 +15,19 @@
 
         {% block js %}
             <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+            <script src="{% static 'js/jquery.formset.js' %}"></script>
+            <script src="{% static 'js/orders_scripts.js' %}"></script>
         {% endblock %}
 
     </head>
 <body>
-    <div class="admin_container">
+    <div class="order_container">
         <div class="h2 text-center head">
             Работа с заказами
         </div>
-    {% block content %}
+        {% block content %}
 
-    {% endblock %}
+        {% endblock %}
     </div>
 
 </body>
