@@ -1,0 +1,39 @@
+<a href="{% url 'index' %}" class="logo"></a>
+<ul class="menu">
+    <li><a href="{% url 'index' %}"
+           class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}">домой</a></li>
+    <li><a href="{% url 'products:products' %}"
+           class="{% if request.resolver_match.namespace == 'products' %}active{% endif %}">продукты</a></li>
+    <li><a href="{% url 'contacts' %}"
+           class="{% if request.resolver_match.url_name == 'contacts' %}active{% endif %}">контакты</a></li>
+
+    {% if user.is_authenticated %}
+        {% if user.is_superuser %}
+            <li><a href="{% url 'adminapp:users' %}" >Admin_menu</a></li>
+        {% endif %}
+        <li>
+            <a href="{% url 'authapp:edit' %}">
+            {% if user.first_name %}
+               {{ user.first_name }}
+            {% else %}
+                Пользователь
+            {% endif %}</a>
+        </li>
+        <li><a href="{% url 'ordersapp:list' %}" >Заказы</a></li>
+        <li><a href="{% url 'authapp:logout' %}" >Выйти</a></li>
+    {% else %}
+        <li><a href="{% url 'authapp:register' %}" >Регистрация</a></li>
+        <li><a href="{% url 'authapp:login' %}" >Войти</a></li>
+    {% endif %}
+
+</ul>
+<a href="#" class="search"></a>
+<a href="{% url 'basketapp:basket' %}" class="basket">
+    <span>
+        {% if basket %}
+            ({{ basket.0.total_quantity }} шт) <br>
+            {{ basket.0.total_cost|floatformat:0 }} руб
+
+        {% endif %}
+    </span>
+</a>
