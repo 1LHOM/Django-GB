@@ -1,0 +1,51 @@
+{% extends 'ordersapp/base.html' %}
+
+{% block content %}
+    {% include 'ordersapp/includes/inc_order_summary.html' %}
+    <div class="order_form">
+        <form action="" class="form-horizontal" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <table class="table">
+                {{ orderitems.management_form }}
+                {% for form in orderitems.forms %}
+                    {% if forloop.first %}
+                        <thead>
+                        <tr>
+                            {% for field in form.visible_fields %}
+                                <th class="{% cycle 'th1' 'th2' 'th3' 'th4' %} order">
+                                    {{ field.label|capfirst }}
+                                </th>
+                            {% endfor %}
+                        </tr>
+                        </thead>
+                    {% endif %}
+                    <tr class="formset_row">
+                        {% for field in form.visible_fields %}
+                            <td class="{% cycle 'th1' 'th2' 'th3' 'th4' %}">
+                                {% if forloop.first %}
+                                    {% for hidden in form.hidden_fields %}
+                                        {{ hidden }}
+                                    {% endfor %}
+                                {% endif %}
+                                {{ field.errors.as_ul }}
+                                {% if field.name == 'price' %}
+                                    {% if field.value %}
+                                        <span class="orderitems-{{ forloop.parentloop.counter0 }}-price">
+                                            {{ field.value }}
+                                        </span> руб.
+                                    {% endif %}
+                                {% else %}
+                                    {{ field }}
+                                {% endif %}
+
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        <button type="submit" class="btn btn-primary form-control">Сохранить</button>
+        </form>
+    </div>
+    {% include 'ordersapp/includes/inc_order_actions.html' %}
+{% endblock %}

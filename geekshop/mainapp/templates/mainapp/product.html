@@ -1,0 +1,50 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+		<div class="hero-white">
+			<div class="header clearfix">
+                {% include 'mainapp/includes/inc_main_menu.html' %}
+			</div>
+		</div>
+
+		<div class="details">
+            {% include 'mainapp/includes/inc_products_menu.html' %}
+
+			<div class="details-products">
+				<div class="details-slider">
+					<div class="slider-product">
+						<img src="/media/{{ product.image }}">
+					</div>
+					<div class="slider-control">
+						<div class="block">
+							<a href="#"><img src="/media/{{ product.image }}" alt="">
+								<div class="text"></div>
+							</a>
+						</div>
+						<div class="block">
+							<a href="#"><img src="/media/{{ product.image }}" alt="">
+								<div class="text"></div>
+							</a>
+						</div>
+						<div class="block">
+							<a href="#"><img src="/media/{{ product.image }}" alt="">
+								<div class="text"></div>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="description">
+					<h3 class="big-bold">{{ product.name }}</h3>
+					<h3 class="red">{{ product.category }}</h3>
+					<p class="price">{{ product.price|floatformat:0 }}<span>руб</span></p>
+					<a href="{% url 'basketapp:basket_add' product.pk %}" class="red-button">
+						заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
+					</a>
+					<div class="description-text">
+						{{ product.description }}
+					</div>
+				</div>
+			</div>
+		</div>
+{% endblock %}
