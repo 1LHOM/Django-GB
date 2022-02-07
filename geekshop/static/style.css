@@ -569,7 +569,7 @@ html, body {
 	margin-right: 30px;
     margin-bottom: 30px;
 	display: block;
-	height: 320px;
+	height: 370px;
 	width: 320px;
 	position: relative;
 }
@@ -693,23 +693,31 @@ html, body {
     border-color: #9ecaed;
     box-shadow: 0 0 10px #9ecaed;
 }
-.custom_form input.blue-button {
+.blue-button {
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 10px;
+    border: solid 1px;
+    margin-top: 5px;
     margin-bottom: 5px;
     background-color: #0063b9;
-    color: white;
+    color: #fff !important;
     height: 40px;
 }
-.custom_form input.blue-button:hover {
+.blue-button:hover {
     color: #fff;
     background-color: #01569f;
     border-color: #ffffff;
+
 }
 .login .form-horizontal p input[type=checkbox] {
     width: 30px;
     height: 30px;
     margin-bottom: 7px;
 }
-
 .user_avatar img {
     width: 200px;
     border-radius: 25px;
@@ -1008,6 +1016,7 @@ html, body {
 	font-weight: 700;
 	line-height: 30px;
 	text-align: center;
+    margin: 15px auto 0;
 }
 .tab-content a .text p {
 	color:  #6c6c6c;
@@ -1017,7 +1026,8 @@ html, body {
 	margin: 15px 15px;
 }
 .tab-content a .text img {
-	margin: 70px auto 0;
+	margin: 10px auto 0;
+    position: relative;
 }
 .tab-content a:hover .text {
 	display: block;

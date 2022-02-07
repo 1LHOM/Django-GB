@@ -1,5 +1,4 @@
 {% extends 'authapp/base.html' %}
-{% load static %}
 
 {% block content %}
     <form class="form-horizontal" action="{% url 'authapp:edit' %}" method="post" enctype="multipart/form-data">
@@ -11,6 +10,6 @@
         <a class="btn btn-primary form-control" href="{% url 'index' %}">На главную</a>
     </form>
     <div class="user_avatar">
-        <img src="{% static 'media/' %}{{ user.avatar }}" alt="">
+        <img src="/media/{{ user.avatar }}" alt="">
     </div>
 {% endblock %}

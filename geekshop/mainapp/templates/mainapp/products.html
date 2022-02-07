@@ -13,21 +13,21 @@
 			<div class="details-products">
 				<div class="details-slider">
 					<div class="slider-product">
-						<img src="{% static 'media/' %}{{ hot_product.image }}">
+						<img src="/media/{{ hot_product.image }}" alt="">
 					</div>
 					<div class="slider-control">
 						<div class="block">
-							<a href="#"><img src="{% static 'media/' %}{{ hot_product.image }}" alt="">
+							<a href="#"><img src="/media/{{ hot_product.image }}" alt="">
 								<div class="text"></div>
 							</a>
 						</div>
 						<div class="block">
-							<a href="#"><img src="{% static 'media/' %}{{ hot_product.image }}" alt="">
+							<a href="#"><img src="/media/{{ hot_product.image }}" alt="">
 								<div class="text"></div>
 							</a>
 						</div>
 						<div class="block">
-							<a href="#"><img src="{% static 'media/' %}{{ hot_product.image }}" alt="">
+							<a href="#"><img src="/media/{{ hot_product.image }}" alt="">
 								<div class="text"></div>
 							</a>
 						</div>
@@ -49,18 +49,22 @@
         <div class="related">
             <div class="title clearfix">
                 <h2>Похожие продукты</h2>
-                <a class="explore" href="#">показать все <img src="{% static '/img/arrow.png' %}" alt=""></a>
+                <a class="explore" href="#">показать все <img src="{% static 'img/arrow.png' %}" alt=""></a>
             </div>
             <div class="related-products clearfix">
                 {% for product in same_products %}
                 <div class="block">
-                    <a href="{% url 'products:product' product.pk %}"><img src="{% static 'media/' %}{{ product.image }}" alt="">
-                        <div class="text">
-                            <img src="{% static '/img/icon-hover.png' %}" alt="img">
+                    <a href="{% url 'products:product' product.pk %}">
+		    <img src="/media/{{ product.image }}" alt="">
+                	<div class="text">
+                            <img src="{% static 'img/icon-hover.png' %}" alt="img">
                             <h4>{{ product.name }}</h4>
                             <p>{{ product.short_desc }}</p>
                         </div>
                     </a>
+		    <a href="{% url 'basketapp:basket_add' product.pk %}" class="blue-button">
+			Добавить в корзину
+		    </a>
                 </div>
                 {% endfor %}
             </div>

@@ -48,7 +48,7 @@ def products(request, pk=None, page=1):
             title = f'{str(category_item).title()} | Interior - online furniture shopping'
 
         # page = request.GET('page', 1)
-        paginator = Paginator(products_list, 2)
+        paginator = Paginator(products_list, 6)
         try:
             products_paginator = paginator.page(page)
         except PageNotAnInteger:

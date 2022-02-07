@@ -12,7 +12,7 @@
             <h3 class="green">тенденции</h3>
             <h3 class="big"> удобные стулья</h3>
             <p>Новый уровень комфорта. Отличные характеристики.</p>
-            <a href="#" class="button-order">заказать <img src="{% static '/img/arrow.png' %}" alt=""></a>
+            <a href="#" class="button-order">заказать <img src="{% static 'img/arrow.png' %}" alt=""></a>
         </div>
         <div class="navi">
             <a href="#"></a><a href="#"></a><a href="#"></a>
@@ -24,18 +24,25 @@
         <div class="featured-menu">
                 <a class="active" href="#">Популярные</a><a href="#">Новинки</a>
         </div>
-        <a class="explore" href="#">показать все <img src="{% static '/img/arrow.png' %}" alt=""></a>
+        <a class="explore" href="#">показать все <img src="{% static 'img/arrow.png' %}" alt=""></a>
         <div class="clearfix">
         </div>
         <div class="tab-content">
             {% for product in products %}
             <div class="block">
-                <a href="{% url 'products:product' product.pk %}"><img src="{% static 'media/' %}{{ product.image }}" alt="" width="270px">
+                <a href="{% url 'products:product' product.pk %}">
+		<img src="/media/{{ product.image }}" alt="" width="270px">
                     <div class="text">
-                        <img src="{% static '/img/icon-hover.png' %}" alt="img">
+{#                        <img src="{% static 'img/icon-hover.png' %}" alt="img">#}
                         <h4>{{ product.name}}</h4>
                         <p>{{ product.short_desc}}</p>
+                        <p>Категория: {{ product.category.name }}</p>
+                        <p>Цена: {{ product.price}}</p>
+                        <p>На складе: {{ product.quantity}}</p>
                     </div>
+		    <a href="{% url 'basketapp:basket_add' product.pk %}" class="blue-button">
+			Добавить в корзину
+		    </a>
                 </a>
             </div>
             {% endfor %}

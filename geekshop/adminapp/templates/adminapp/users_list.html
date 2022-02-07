@@ -1,5 +1,4 @@
 {% extends 'adminapp/base.html' %}
-{% load static %}
 {% load my_tags %}
 {% block content %}
 <div class="users_list">
@@ -7,7 +6,7 @@
     {% for object in object_list %}
         <hr>
         <div class="user_record" {% if not object.is_active %}style="opacity: 0.5" {% endif %}>
-{#            <div class="user_avatar_min"><img src="{% static 'media/' %}{{ object.avatar }}" alt=""></div>#}
+{#            <div class="user_avatar_min"><img src="/media/{{ object.avatar }}" alt=""></div>#}
             <div class="user_avatar_min"><img src="{{ object.avatar|media_for_users }}" alt=""></div>
             <div class="user_role">
                 {% if object.is_superuser %}

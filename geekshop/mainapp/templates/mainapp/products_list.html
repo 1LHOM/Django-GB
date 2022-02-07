@@ -14,13 +14,13 @@
                 <h2>Категория: "{{ category.name|title }}"</h2>
                 <div class="paginator">
                     {% if products.has_previous %}
-                        <a href="{% url 'products:product_paginate' category.pk products.previous_page_number %}"><</a>
+                        <a class="btn btn-primary" href="{% url 'products:product_paginate' category.pk products.previous_page_number %}" style="color: blue;">Пред. </a>
                     {% endif %}
                     <span class="current">
                         страница {{ products.number }} из {{ products.paginator.num_pages }}
                     </span>
                     {% if products.has_next %}
-                        <a href="{% url 'products:product_paginate' category.pk products.next_page_number %}">></a>
+                        <a class="btn btn-primary" href="{% url 'products:product_paginate' category.pk products.next_page_number %}" style="color: blue;"> След.</a>
                     {% endif %}
                 </div>
             </div>
@@ -36,7 +36,10 @@
                             <h4>{{ product.name }}</h4>
                             <p>{{ product.description }}</p>
                         </div>
-                    </a>
+		    </a>
+		    <a href="{% url 'basketapp:basket_add' product.pk %}" class="blue-button">
+			Добавить в корзину
+		    </a>
                 </div>
             {% endfor %}
             </div>

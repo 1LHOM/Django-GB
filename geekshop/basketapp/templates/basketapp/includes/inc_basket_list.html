@@ -1,7 +1,6 @@
-{% load static %}
 {% for item in basket_list %}
     <div class="basket_record">
-        <img src="{% static 'media/' %}{{ item.product.image }}" alt="">
+        <img src="/media/{{ item.product.image }}" alt="">
         <span class="category_name">{{ item.category.name }}</span>
         <span class="product_name">{{ item.name }}</span>
         <span class="product_price">{{ item.product.price }}</span>
