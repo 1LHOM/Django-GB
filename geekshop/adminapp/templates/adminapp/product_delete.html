@@ -1,0 +1,11 @@
+{% extends 'adminapp/base.html' %}
+{% block content %}
+    <div class="login">
+    <p>Вы уверены что хотите удалить продукта <span class="label-warning">{{ object.name }}</span> ?</p>
+    <form method="post">
+    {% csrf_token %}
+        <input type="submit" value="Уверень!" class="btn btn-danger form-control">
+    </form>
+        <a href="{% url 'adminapp:products' object.pk %}" class="btn btn-primary form-control">Нет</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'adminapp/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="login">
+            <form class="form-horizontal " method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="btn btn-primary form-control" value="Сохранить">
+            </form>
+
+            {% if 'create' in request.path %}
+                <a class="btn btn-info form-control" href="{% url 'adminapp:products' category.pk %}">Вернутся к списку товаров</a>
+            {% elif 'update' in request.path %}
+                <a class="btn btn-info form-control" href="{% url 'adminapp:products' object.category.pk %}">Вернутся к списку товаров</a>
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}
